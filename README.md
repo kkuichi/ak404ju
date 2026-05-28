@@ -80,7 +80,7 @@ USE_OVERSAMPLING = False
 USE_MI = True
 CORRELATION_THRESHOLD = 0.90
 TOP_K = 20
-```
+``` 
 
 # Pouzite modely
 
