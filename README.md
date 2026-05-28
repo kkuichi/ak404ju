@@ -40,7 +40,9 @@ Po spusteni notebooku sa automaticky vytvori priecinok `bakalarka_outputs`, ktor
 
 Projekt ocakava vstupny subor z https://www.kaggle.com/datasets/sid321axn/malicious-urls-dataset vo forme:
 
+```text
 malicious_phish.csv
+```
 
 Dataset musi byt ulozeny v rovnakom priecinku ako notebook.
 
