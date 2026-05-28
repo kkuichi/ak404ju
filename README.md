@@ -101,7 +101,7 @@ Modely su vyhodnocovane pomocou metrik:
 - Recall
 - F1-score
 - Macro F1-score
-- ROC AUC *(pri binárnej klasifikácii)*
+- ROC AUC *(pri binarnej klasifikacii)*
 
 Notebook zaroven uklada:
 
