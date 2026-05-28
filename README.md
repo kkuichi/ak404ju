@@ -162,7 +162,7 @@ Aktivacia prostredia v Linuxe alebo macOS:
 source .venv/bin/activate
 ```
 
-Inatalacia potrebnych kniznic:
+Instalacia potrebnych kniznic:
 
 ```bash
 pip install pandas numpy matplotlib scikit-learn xgboost imbalanced-learn jupyter
