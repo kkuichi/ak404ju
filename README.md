@@ -71,12 +71,14 @@ Pred trenovanim modelov sa vykonava vyber najdolezitejsich priznakov:
 
 Predvolene nastavenia:
 
+```python
 RANDOM_STATE = 42
 TEST_SIZE = 0.20
 USE_OVERSAMPLING = False
 USE_MI = True
 CORRELATION_THRESHOLD = 0.90
 TOP_K = 20
+```
 
 # Pouzite modely
 
@@ -97,7 +99,7 @@ Modely su vyhodnocovane pomocou metrik:
 - Recall
 - F1-score
 - Macro F1-score
-- ROC AUC (pri binarnej klasifikacii)
+- ROC AUC *(pri binárnej klasifikácii)*
 
 Notebook zaroven uklada:
 
@@ -112,10 +114,13 @@ Notebook zaroven uklada:
 
 Vystupy sa ukladaju do priecinka:
 
+```text
 bakalarka_outputs/
+```
 
 Priklady generovanych vystupov:
 
+```text
 bakalarka_outputs/
 ├── feature_analysis/
 │   ├── numeric_feature_statistics.csv
@@ -133,6 +138,7 @@ bakalarka_outputs/
 │   ├── multiclass_feature_scores.csv
 │   └── multiclass_selected_features.txt
 └── all_results_summary.csv
+```
 
 # Instalacia
 
