@@ -26,10 +26,13 @@ Pouzite kniznice:
 
 # Struktura projektu
 
+```text
+.
 ├── bakalarka.ipynb
 ├── malicious_phish.csv
 ├── bakalarka_outputs/
 └── README.md
+```
 
 Po spusteni notebooku sa automaticky vytvori priecinok `bakalarka_outputs`, ktory obsahuje vysledky experimentov, tabulky a grafy.
 
