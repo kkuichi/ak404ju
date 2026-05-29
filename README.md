@@ -1,30 +1,30 @@
-# Detekcia skodlivych URL pomocou metod datovej analyzy
+# Detekcia škodlivých URL pomocou metód dátovej analýzy
 
-Tento repozitar obsahuje prakticku cast bakalarskej prace zameranu na klasifikaciu URL adries pomocou metod datovej analyzy. Projekt pracuje s datasetom: https://www.kaggle.com/datasets/sid321axn/malicious-urls-dataset, z ktoreho sa extrahuju priznaky URL adries a nasledne sa trenuje a vyhodnocuje 5 klasifikacnych modelov.
+Tento repozitár obsahuje praktickú časť bakalárskej práce zameranú na klasifikáciu URL adries pomocou metód dátovej analýzy. Projekt pracuje s datasetom: https://www.kaggle.com/datasets/sid321axn/malicious-urls-dataset, z ktorého sa extrahujú príznaky URL adries a následne sa trénuje a vyhodnocuje 5 klasifikačných modelov.
 
-# Ciel projektu
+# Cieľ projektu
 
-Cielom projektu je porovnat viacere klasifikacne modely pri rozpoznavani bezpecnych a skodlivych URL adries.
+Cieľom projektu je porovnať viaceré klasifikačné modely pri rozpoznávaní bezpečných a škodlivých URL adries.
 
-Projekt riesi dve klasifikacne ulohy:
+Projekt rieši dve klasifikačné úlohy:
 
-- binarna klasifikacia - rozdelenie URL na: `benign` a `malicious`,
-- multitriedna klasifikacia - rozdelenie URL podla povodnych tried datasetu: `benign`, `defacement`, `phishing` a `malware`.
+* binárna klasifikácia - rozdelenie URL na: `benign` a `malicious`,
+* multitriedna klasifikácia - rozdelenie URL podľa pôvodných tried datasetu: `benign`, `defacement`, `phishing` a `malware`.
 
-# Pouzite technologie
+# Použité technológie
 
-Projekt je vytvoreny v jazyku Python a spracovany vo forme Jupyter Notebooku.
+Projekt je vytvorený v jazyku Python a spracovaný vo forme Jupyter Notebooku.
 
-Pouzite kniznice:
+Použité knižnice:
 
-- `pandas`
-- `numpy`
-- `matplotlib`
-- `scikit-learn`
-- `xgboost`
-- `imbalanced-learn` 
+* `pandas`
+* `numpy`
+* `matplotlib`
+* `scikit-learn`
+* `xgboost`
+* `imbalanced-learn`
 
-# Struktura projektu
+# Štruktúra projektu
 
 ```text
 .
@@ -34,44 +34,45 @@ Pouzite kniznice:
 └── README.md
 ```
 
-Po spusteni notebooku sa automaticky vytvori priecinok `bakalarka_outputs`, ktory obsahuje vysledky experimentov, tabulky a grafy.
+Po spustení notebooku sa automaticky vytvorí priečinok `bakalarka_outputs`, ktorý obsahuje výsledky experimentov, tabuľky a grafy.
 
 # Dataset
 
-Projekt ocakava vstupny subor z https://www.kaggle.com/datasets/sid321axn/malicious-urls-dataset vo forme:
+Projekt očakáva vstupný súbor z https://www.kaggle.com/datasets/sid321axn/malicious-urls-dataset vo forme:
 
 ```text
 malicious_phish.csv
 ```
 
-Dataset musi byt ulozeny v rovnakom priecinku ako notebook.
+Dataset musí byť uložený v rovnakom priečinku ako notebook.
 
-# Extrakcia priznakov
+# Extrakcia príznakov
 
-Z kazdej URL adresy sa extrahuje viacero priznakov, napriklad:
+Z každej URL adresy sa extrahuje viacero príznakov, napríklad:
 
-- dlzka URL, domeny, cesty a query casti,
-- pocet bodiek, lomiek, cislic, specialnych znakov a parametrov,
-- pritomnost HTTPS,
-- vyskyt IP adresy namiesto domeny,
-- pocet subdomen,
-- vyskyt skracovacov URL,
-- vyskyt podozrivych slov ako `login`, `secure`, `verify`, `bank` alebo `password`,
-- statistiky tokenov v URL,
-- pomer cislic, pismen, velkych pismen a specialnych znakov.
+* dĺžka URL, domény, cesty a query časti,
+* počet bodiek, lomiek, číslic, špeciálnych znakov a parametrov,
+* prítomnosť HTTPS,
+* výskyt IP adresy namiesto domény,
+* počet subdomén,
+* výskyt skracovačov URL,
+* výskyt podozrivých slov ako `login`, `secure`, `verify`, `bank` alebo `password`,
+* štatistiky tokenov v URL,
+* pomer číslic, písmen, veľkých písmen a špeciálnych znakov.
 
-Notebook nasledne vytvara aj analyzu priznakov, napriklad statisticke ukazovatele, pocetnosti binarnych priznakov a korelacnu maticu.
+Notebook následne vytvára aj analýzu príznakov, napríklad štatistické ukazovatele, početnosti binárnych príznakov a korelačnú maticu.
 
-# Vyber priznakov
+# Výber príznakov
 
-Pred trenovanim modelov sa vykonava vyber najdolezitejsich priznakov:
+Pred trénovaním modelov sa vykonáva výber najdôležitejších príznakov:
 
-1. odstranenie silno korelovanych priznakov podla nastavenej hranice,
-2. vyber `TOP_K` najlepsich priznakov pomocou metody:
-   - `mutual_info_classif`, alebo
-   - `chi2`.
+1. odstránenie silno korelovaných príznakov podľa nastavenej hranice,
+2. výber `TOP_K` najlepších príznakov pomocou metódy:
 
-Predvolene nastavenia:
+   * `mutual_info_classif`, alebo
+   * `chi2`.
+
+Predvolené nastavenia:
 
 ```python
 RANDOM_STATE = 42
@@ -80,47 +81,47 @@ USE_OVERSAMPLING = False
 USE_MI = True
 CORRELATION_THRESHOLD = 0.90
 TOP_K = 20
-``` 
+```
 
-# Pouzite modely
+# Použité modely
 
-V projekte sa porovnavaju tieto modely:
+V projekte sa porovnávajú tieto modely:
 
-- Logistic Regression
-- Decision Tree
-- Random Forest
-- LinearSVC
-- XGBoost
+* Logistic Regression
+* Decision Tree
+* Random Forest
+* LinearSVC
+* XGBoost
 
 # Vyhodnotenie modelov
 
-Modely su vyhodnocovane pomocou metrik:
+Modely sú vyhodnocované pomocou metrík:
 
-- Accuracy
-- Precision
-- Recall
-- F1-score
-- Macro F1-score
-- ROC AUC *(pri binarnej klasifikacii)*
+* Accuracy
+* Precision
+* Recall
+* F1-score
+* Macro F1-score
+* ROC AUC *(pri binárnej klasifikácii)*
 
-Notebook zaroven uklada:
+Notebook zároveň ukladá:
 
-- tabulky vysledkov vo formate CSV,
-- matice zamen,
-- ROC krivky,
-- porovnanie modelov podla Macro F1-score,
-- zoznam vybranych priznakov,
-- skore priznakov.
+* tabuľky výsledkov vo formáte CSV,
+* matice zámen,
+* ROC krivky,
+* porovnanie modelov podľa Macro F1-score,
+* zoznam vybraných príznakov,
+* skóre príznakov.
 
-# Vystupy
+# Výstupy
 
-Vystupy sa ukladaju do priecinka:
+Výstupy sa ukladajú do priečinka:
 
 ```text
 bakalarka_outputs/
 ```
 
-Priklady generovanych vystupov:
+Príklady generovaných výstupov:
 
 ```text
 bakalarka_outputs/
@@ -142,27 +143,27 @@ bakalarka_outputs/
 └── all_results_summary.csv
 ```
 
-# Instalacia
+# Inštalácia
 
-Odporuca sa vytvorit virtualne prostredie:
+Odporúča sa vytvoriť virtuálne prostredie:
 
 ```bash
 python -m venv .venv
 ```
 
-Aktivacia prostredia vo Windows:
+Aktivácia prostredia vo Windows:
 
 ```bash
 .venv\Scripts\activate
 ```
 
-Aktivacia prostredia v Linuxe alebo macOS:
+Aktivácia prostredia v Linuxe alebo macOS:
 
 ```bash
 source .venv/bin/activate
 ```
 
-Instalacia potrebnych kniznic:
+Inštalácia potrebných knižníc:
 
 ```bash
 pip install pandas numpy matplotlib scikit-learn xgboost imbalanced-learn jupyter
@@ -170,20 +171,19 @@ pip install pandas numpy matplotlib scikit-learn xgboost imbalanced-learn jupyte
 
 # Spustenie projektu
 
-1. Ulozte dataset `malicious_phish.csv` do rovnakeho priecinka ako notebook.
+1. Uložte dataset `malicious_phish.csv` do rovnakého priečinka ako notebook.
 2. Spustite Jupyter Notebook:
 
 ```bash
 jupyter notebook
 ```
 
-3. Otvorte subor:
+3. Otvorte súbor:
 
 ```text
 bakalarka.ipynb
 ```
 
-4. Spustite bunky postupne od zaciatku.
+4. Spustite bunky postupne od začiatku.
 
-Po uspesnom spusteni sa vygeneruje priecinok `bakalarka_outputs` so vsetkymi vysledkami.
-
+Po úspešnom spustení sa vygeneruje priečinok `bakalarka_outputs` so všetkými výsledkami.
